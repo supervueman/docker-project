@@ -62,11 +62,11 @@ services:
       - nginx_net
     volumes:
       - ./app/server:/usr/src/app
-      - ./app/server:/usr/src/app/node_modules
+      - nodemodules:/usr/src/service/node_modules
     working_dir: /usr/src/app
     command: npm run dev
-    ports:
-      - 3333:3000
+    # ports:
+    #   - 3333:3000
     # depends_on:
     #   - nginx
 
@@ -80,3 +80,5 @@ networks:
 volumes:
   postgres:
   pgadmin:
+  nodemodules:
+    external: true
