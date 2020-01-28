@@ -54,13 +54,19 @@ services:
 
   app_server:
     # container_name: app
-    build: ./app/server
-    env_file: ./app/server/.env
+    # build: ./app/server
+    image: node:12
+    # env_file: ./app/server/.env
     networks:
       - postgres
       - nginx_net
-    # ports:
-    #   - 3333:3000
+    volumes:
+      - ./app/server:/usr/src/app
+      - ./app/server:/usr/src/app/node_modules
+    working_dir: /usr/src/app
+    command: npm run dev
+    ports:
+      - 3333:3000
     # depends_on:
     #   - nginx
 
